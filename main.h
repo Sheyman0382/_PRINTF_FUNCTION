@@ -20,5 +20,6 @@ int count_digit(int num);
 void handle_char(void);
 void handle_str(void);
 void handle_int(void);
+void handle_percent(void);
 
 #endif /*MAIN_H*/

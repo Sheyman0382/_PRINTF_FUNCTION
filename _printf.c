@@ -3,8 +3,14 @@
 int _printf(const char *format, ...)
 {
 	va_start(sheyman, format);
-
-
+	int i = 0;
+	spec_t specifier[] = {
+		{"c", handle_char},
+		{"s", handle_str},
+		{"%", handle_percent},
+		{"d", handle_int},
+		{NULL, NULL}
+	};
 
 	while (*format != '\0')
 	{
@@ -15,17 +21,14 @@ int _printf(const char *format, ...)
 		else 
 		{
 			format++;
-			if (*format == '%')
+			while (specifier[i].fmrt_name != NULL)
 			{
-				char char_var = '%';
-				write(1, &char_var, 1);
-			}
-			else if (*format == 'c')
-				handle_char();
-			else
-			{
-				if (*format == 's')
-					handle_str();
+				if (*format == *specifier[i].fmrt_name)
+				{
+					specifier[i].fptr();
+					break;
+				}
+				i++;
 			}
 		}
 		format++;
@@ -34,9 +37,10 @@ int _printf(const char *format, ...)
 }
 int main(void)
 {
+	int num = 250;
 	_printf("Let's try to printf a simple sentence.\n");
 	_printf("Negative:[%c]\n", 'B');
-	_printf("String:[%s]\n", "I am a string !");
+	_printf("String and integer:[%s] [%d]\n", "I am a string !", num);
 	_printf("Sheyman 100%%\n");
 
 	return (0);
