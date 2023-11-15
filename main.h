@@ -21,5 +21,6 @@ void handle_char(void);
 void handle_str(void);
 void handle_int(void);
 void handle_percent(void);
+void handle_binary(void);
 
 #endif /*MAIN_H*/

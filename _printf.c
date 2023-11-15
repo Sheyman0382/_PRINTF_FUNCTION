@@ -9,6 +9,7 @@ int _printf(const char *format, ...)
 		{"s", handle_str},
 		{"%", handle_percent},
 		{"d", handle_int},
+		{"b", handle_binary},
 		{NULL, NULL}
 	};
 
@@ -42,6 +43,7 @@ int main(void)
 	_printf("Negative:[%c]\n", 'B');
 	_printf("String and integer:[%s] [%d]\n", "I am a string !", num);
 	_printf("Sheyman 100%%\n");
+	_printf("binary test [%b]\n", num);
 
 	return (0);
 }
