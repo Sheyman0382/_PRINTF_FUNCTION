@@ -1,25 +1,25 @@
 #include "main.h"
 
 /**
- * handle_int - a function that handles %d specifier and how
+ * handle_dec - a function that handles %d specifier and how
  * the integer is converted to a string
  *
  * Return: Nothing
  */
 
-void handle_int(int *ptr, char *array)
+void handle_dec(int *ptr, char *array)
 {
-	int num, count, i, divider = 0, temp;
+    int num, temp, count = 0, i = 0, divider = 0;
+    char *str;
     
     num = va_arg(sheyman, int);
     if (num < 0)
     {
 	    num = num * -1;
-    	    count = count_digit(num);
+	    count = count_digit(num);
 	    temp = *ptr;
-
 	    array[temp] = '-';
-	    if (temp = BUFFER - 2)
+	    if (temp == BUFFER - 2)
 	    {
 		    array[++temp] = '\0';
 		    write(1, array, BUFFER);
@@ -28,7 +28,7 @@ void handle_int(int *ptr, char *array)
 	    *ptr = temp;
     }
     else
-	    count = count_digit(num);
+    	count = count_digit(num);
 
     for (i = 0; i < count; i++){
 	    if (i == 0)
@@ -36,7 +36,6 @@ void handle_int(int *ptr, char *array)
 	    else
 		    divider = divider * 10;
     }
-
     i = *ptr;
     while (count){
         char character = (num / divider) + '0';
@@ -49,7 +48,7 @@ void handle_int(int *ptr, char *array)
 	}
 	else
 		i++;
-	num = num % divider;
+        num = num % divider;
         divider = divider / 10;
         count--;
     }

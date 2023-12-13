@@ -6,10 +6,14 @@
  * Return: Nothing
  */
 
-void handle_percent(void)
+void handle_percent(int *ptr, char *array)
 {
-	char percent;
-
-	percent = '%';
-	write(1, &percent, 1);
+	array[*ptr] = '%';
+	if (*ptr == BUFFER - 1)
+	{
+		array[BUFFER] = '\0';
+		write(1, array, BUFFER);
+		*ptr = 0;
+	}
+	++*ptr;
 }

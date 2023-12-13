@@ -6,10 +6,20 @@
  * Return: Nothing
  */
 
-void handle_char(void)
+void handle_char(int *ptr, char *array)
 {
-	int char_var;
+	char char_var;
+	int j = *ptr;
 
 	char_var = va_arg(sheyman, int);
-	write (1, &char_var, 1);
+	array[j] = char_var;
+	if (j == BUFFER - 2)
+	{
+		array[++j] = '\0';
+		write(1, array, BUFFER);
+		j = 0;
+	}
+	else
+		j++;
+	*ptr = j;
 }

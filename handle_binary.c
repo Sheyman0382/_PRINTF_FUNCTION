@@ -1,11 +1,25 @@
 #include "main.h"
 
-void num_to_bin(int num)
+void num_to_bin(int num, int *ptr, char *array)
 {
+	int i, j;
 	if (num > 1)
-		num_to_bin(num >> 1);
-	char b = ((num & 1) + '0');
-	write(1, &b, 1);
+	{
+		i = num >> 1;
+		num_to_bin(i, ptr, array);
+	}
+	char b = (num & 1) + '0';
+	j = *ptr;
+	array[j] = b;
+	if (j == BUFFER - 2)
+	{
+		array[j + 1] = '\0';
+		write(1, array, BUFFER);
+		j = 0;
+	}
+	else
+		j++;
+	*ptr = j;
 }
 
 /**
@@ -15,10 +29,10 @@ void num_to_bin(int num)
  * Return: Nothing
  */
 
-void handle_binary(void)
+void handle_binary(int *ptr, char *array)
 {
 	int num;
 
 	num = va_arg(sheyman, int);
-	num_to_bin(num);
+	num_to_bin(num, ptr, array);
 }
