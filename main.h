@@ -28,9 +28,11 @@ void handle_binary(int *ptr, char *array);
 void handle_unsigned(int *ptr, char *array);
 void handle_octa(int *ptr, char *array);
 void handle_hexadecimal(int *ptr, char *array);
-char *_str_rev(char *str);
+char *str_rev(char *str);
 char *num_to_octal(int num);
 char *num_to_hexa(int num);
 void handle_HEXA(int *ptr, char *array);
 char *num_to_HEXA(int num);
+const char *str_with_no_specifier(char *array, int *ptr, const char *charac);
+
 #endif /*MAIN_H*/
