@@ -3,6 +3,7 @@
 const char *str_with_no_specifier(char *array, int *ptr, const char *charac)
 {
 	int j = *ptr;
+
 	array[j] = *charac;
 	if (j == BUFFER - 2)
 	{
